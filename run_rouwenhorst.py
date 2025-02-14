@@ -18,9 +18,9 @@ ar_pi = {} # Container.
 # Select method and discretize.
 for i in ar:
     ar_y[i], ar_pi[i] = ar[i](mu,rho,sigma,N)
-del mu,rho,sigma,N
 
 print(ar_y)
+print(ar_pi)
 
 #%% Simulate the AR(1)'s based on discretized processes.
 seed = 2025 # Seed for random number.
@@ -30,7 +30,6 @@ sim = {}
 for i in ar_y.keys():
     np.random.seed(seed)
     sim["ar_"+i] = simulate(ar_y[i],ar_pi[i],T)
-del seed
 
 #%% Plot the time series.
 time = range(0,T) # X-axis.
@@ -42,4 +41,3 @@ for i in sim:
     plt.ylabel('Y')
     plt.title("AR(1): "+i)
     plt.show()
-del i
